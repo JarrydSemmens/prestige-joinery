@@ -516,6 +516,133 @@ p {
   font-size: 14px;
 }
 
+/* Photography */
+
+figure {
+  margin: 0;
+}
+
+.card-img-container img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Photo banner (full-width image with overlaid text) */
+
+.banner-photo {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+
+.banner-photo img {
+  display: block;
+  width: 100%;
+  height: clamp(240px, 42vw, 460px);
+  object-fit: cover;
+}
+
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  color: #f5efe4;
+  background: linear-gradient(180deg, rgba(20, 16, 11, 0.15), rgba(20, 16, 11, 0.55));
+}
+
+.banner-overlay .banner-title {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 4vw, 40px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.banner-overlay .banner-caption {
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(245, 239, 228, 0.85);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Split media + text (e.g. the maker section) */
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.split-media {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.split-media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.split-body {
+  display: grid;
+  gap: 14px;
+}
+
+.split-body p:not(.eyebrow) {
+  color: var(--muted);
+}
+
+/* Feature panel backed by a photo (dark overlay keeps text legible) */
+
+.feature-panel.has-image {
+  position: relative;
+  isolation: isolate;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.feature-panel.has-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(20, 16, 11, 0.62), rgba(20, 16, 11, 0.78));
+}
+
+/* Gallery images */
+
+.gallery-item img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease;
+}
+
+.gallery-item:hover img {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
 /* Responsive */
 
 @media (max-width: 900px) {
@@ -533,6 +660,11 @@ p {
   .grid.two-col,
   .gallery-grid {
     grid-template-columns: 1fr;
+  }
+
+  .split {
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .steps {
